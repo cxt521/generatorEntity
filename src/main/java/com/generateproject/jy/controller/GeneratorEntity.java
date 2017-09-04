@@ -38,9 +38,6 @@ public class GeneratorEntity {
      *功能描述:操作主函数
      **/
     public void doExcute(){
-        if (BeforeDoExcute()){
-            List<List<String>> lists = readExcelContent("");
-        }
-
+        List<List<String>> lists = readExcelContent("");
     }
 }
