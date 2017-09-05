@@ -1,4 +1,4 @@
-package com.generateproject.jy.Util;
+package com.generateproject.jy.util;
 
 import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
