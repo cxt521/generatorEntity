@@ -13,8 +13,6 @@ import javax.servlet.http.HttpServletResponse;
  * @file:IndexController.java
  * @author: 刘海洋
  * @date: 2017-09-05-9:15
- * @version: 1.0
- * @projectName: 微信银行
  */
 @Controller
 @RequestMapping(value = "/")

@@ -9,8 +9,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
  * @author: 刘海洋
  * @date: 2017-09-05-11:21
  * @version: 1.0
- * @projectName: 微信银行
- */
+ * */
 
 @Configuration
 public class WebConfig extends WebMvcConfigurerAdapter {
