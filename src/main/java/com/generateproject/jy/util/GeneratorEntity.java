@@ -1,4 +1,4 @@
-package com.generateproject.jy.controller;
+package com.generateproject.jy.util;
 
 import com.generateproject.jy.util.OperExcel;
 import freemarker.template.Configuration;
@@ -61,7 +61,6 @@ public class GeneratorEntity {
             List<List<String>> lists = readExcelContent(properties.getProperty("excelpath"));
             init(lists);
         }
-        
     }
 
     /**

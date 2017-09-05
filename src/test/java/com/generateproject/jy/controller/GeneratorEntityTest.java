@@ -1,8 +1,7 @@
 package com.generateproject.jy.controller;
 
+import com.generateproject.jy.util.GeneratorEntity;
 import org.junit.Test;
-
-import static org.junit.Assert.*;
 
 /**
  * Created by Lenovo on 2017/9/4.

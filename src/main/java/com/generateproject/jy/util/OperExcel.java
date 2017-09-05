@@ -22,7 +22,7 @@ public class OperExcel {
 
 
     /**
-     *方法名：OperExcel
+     *方法名：readXlsxContent
      *时间:2017/9/4
      *功能描述:读取excel内容
      **/
