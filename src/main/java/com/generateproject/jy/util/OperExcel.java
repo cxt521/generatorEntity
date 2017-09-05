@@ -1,11 +1,18 @@
 package com.generateproject.jy.util;
 
+import org.apache.poi.hssf.usermodel.HSSFSheet;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
+import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import sun.security.krb5.internal.PAData;
 
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
@@ -31,34 +38,22 @@ public class OperExcel {
         List<List<String>> result = new ArrayList<List<String>>();
 
         try {
-            InputStream is = new FileInputStream(path);
-            // XSSFWorkbook 表示整个excel
-            XSSFWorkbook workbook = new XSSFWorkbook(is);
+            // 自动判断excel的版本类型
+            Workbook book = WorkbookFactory.create(new FileInputStream(path));
 
-            // 循环每一页，并处理当前页
-            for (int numSheet = 0; numSheet < workbook.getNumberOfSheets(); numSheet++) {
-                XSSFSheet sheet = workbook.getSheetAt(numSheet); // 表示每一页
+            // 遍历所有的excel中的sheet
+            for (int i = 0; i < book.getNumberOfSheets(); i++) {
 
-                if (sheet == null) {
-                    continue; // 结束本次循环　
-                }
+                Sheet sheet = book.getSheetAt(i);
 
-                for (int rowNum = 1; rowNum <= sheet.getLastRowNum(); rowNum++) {
-                    XSSFRow row = sheet.getRow(rowNum); // 表示每一行
+                // 读取excel从第１行开始，开始坐标为０
+                for (int j = 1; j < sheet.getLastRowNum(); j++) {
+                    Row row = sheet.getRow(j);
+                    List<String> rowList = new ArrayList<>();
 
-                    int minCellNum = row.getFirstCellNum();
-                    int maxCellNum = row.getLastCellNum();
-
-                    List<String> rowList = new ArrayList<String>();
-
-                    //　遍历行，获取每个cell元素
-                    for (int cellIndex = minCellNum; cellIndex < maxCellNum; cellIndex++) {
-                        XSSFCell cell = row.getCell(cellIndex);
-
-                        if (cell == null) {
-                            continue;
-                        }
-                        rowList.add(cell.toString());
+                    for (int x = 0; x < row.getLastCellNum(); x++) {
+                        Cell cell = row.getCell(x);
+                        rowList.add(cell.getStringCellValue());
                     }
                     result.add(rowList);
                 }
@@ -66,9 +61,41 @@ public class OperExcel {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
-        System.out.println(result);
-
+        // 返回excel内容
         return result;
+    }
+
+
+    /**
+     *  读取excel第一行标题
+     * @param path　文件路径
+     * @return
+     */
+    public static List<String> readXlsxTitle(String path) {
+        // 新建一个List用于存放excel的第一行(标题)
+        List<String> list = new ArrayList<>();
+        try {
+            Workbook book = WorkbookFactory.create(new FileInputStream(path));
+
+            // 获取sheet
+            Sheet sheet =  book.getSheetAt(0);
+            // 获取行数
+            Row row = sheet.getRow(0);
+            // 遍历第一行的单元格内容信息
+            String result = null;
+            for (int i = 0; i < row.getLastCellNum(); i++) {
+                result = row.getCell(i).getStringCellValue();
+                list.add(result);
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        } catch (InvalidFormatException e) {
+            e.printStackTrace();
+        }
+        // 返回excel第一行标题内容
+        return list;
     }
 }
