@@ -21,16 +21,7 @@ public class IndexController {
     @RequestMapping(value = "/index",method = RequestMethod.GET)
     @ResponseBody
     ModelAndView getTmp(HttpServletRequest request, HttpServletResponse response){
-        System.out.print("调用成功");
-        ModelAndView mv = new ModelAndView("redirect:/templates/error/404.html");
+        ModelAndView mv = new ModelAndView("redirect:/html/index2.html");
         return mv;
-    }
-
-    @RequestMapping(value = "/test")
-    @ResponseBody
-    String geT2mp(HttpServletRequest request, HttpServletResponse response){
-        System.out.print("调用成功");
-        ModelAndView mv = new ModelAndView("/error/404.jsp");
-        return "/error/405.jsp";
     }
 }
