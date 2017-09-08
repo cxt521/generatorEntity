@@ -99,6 +99,7 @@
 
 				container.style.background = 'url(' + canvas.toDataURL('image/png') + ')';
 				container.style.backgroundSize = '32px 100%';
+				container.style.zIndex = '1';
 
 				//
 
@@ -198,7 +199,8 @@
 	<script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
 	<!-- Include all compiled plugins (below), or include individual files as needed -->
 	<script src="../js/bootstrap.min.js"></script>
-	<div class="input-group">
+	<div class="input-group" style="position:absolute;z-index:100;padding-top: 10px">
+		<h2>输入框</h2>
 		<input type="text" class="form-control" placeholder="Recipient's username" aria-describedby="basic-addon2">
 		<span class="input-group-addon" id="basic-addon2">@example.com</span>
 		</div>
