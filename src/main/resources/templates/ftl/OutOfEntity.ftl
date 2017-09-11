@@ -15,11 +15,11 @@ public class ${arryClassName}{
 </#list>
 <#list array as a>
 
-    private String get${a.arrayNameUp}(){
+    public String get${a.arrayNameUp}(){
     return ${a.arrayNameDown};
     }
 
-    private void set${a.arrayNameUp}(String ${a.arrayNameDown}){
+    public void set${a.arrayNameUp}(String ${a.arrayNameDown}){
     this.${a.arrayNameDown}= ${a.arrayNameDown};
     }
 
